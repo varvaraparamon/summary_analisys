@@ -1,0 +1,12 @@
+torch
+transformers
+huggingface-hub
+python-dotenv
+accelerate
+bitsandbytes
+protobuf
+sentencepiece
+optimum
+gptqmodel
+sqlalchemy
+psycopg2-binary

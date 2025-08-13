@@ -1,0 +1,34 @@
+services:
+  llama:
+    build: .
+    container_name: llama_gpu
+    deploy:
+      resources:
+        limits:
+          memory: 110G
+        reservations:
+          memory: 10G
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - TRANSFORMERS_CACHE=/cache/huggingface  
+    volumes:
+      - .:/llama
+      - huggingface_cache:/cache/huggingface
+      - nas_data:/data/nas
+    ports:
+      - "5001:5001"
+    stdin_open: true
+    tty: true
+
+volumes:
+  huggingface_cache:
+  nas_data:
+    driver: local
+    driver_opts:
+      type: cifs
+      o: "username=${NAS_USERNAME},password=${NAS_PASSWORD},iocharset=utf8,file_mode=0777,dir_mode=0777"
+      device: "//172.151.1.10/Сбор цифрового следа"
