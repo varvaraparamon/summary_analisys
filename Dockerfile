@@ -11,12 +11,12 @@ RUN apt-get update && apt-get install -y \
     libpq-dev build-essential \
     && rm -rf /var/lib/apt/lists/*
 
-RUN curl -sS https://bootstrap.pypa.io/get-pip.py | python3.12
+# RUN curl -sS https://bootstrap.pypa.io/get-pip.py | python3.12
 
-RUN pip install --no-cache-dir --trusted-host pypi.python.org --trusted-host files.pythonhosted.org --trusted-host pypi.org --upgrade pip setuptools wheel
+RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple --no-cache-dir --trusted-host pypi.python.org --trusted-host files.pythonhosted.org --trusted-host pypi.org --upgrade pip setuptools wheel
 
-RUN ln -sf /usr/bin/python3.12 /usr/bin/python && \
-    ln -sf /usr/bin/pip3 /usr/bin/pip
+# RUN ln -sf /usr/bin/python3.12 /usr/bin/python && \
+#     ln -sf /usr/bin/pip3 /usr/bin/pip
 
 VOLUME /root/.cache/huggingface
 
@@ -24,8 +24,8 @@ WORKDIR /llama
 
 COPY requirements.txt .
 
-RUN pip install --no-cache-dir --trusted-host pypi.python.org --trusted-host files.pythonhosted.org --trusted-host pypi.org  --upgrade -r requirements.txt
+RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple --no-cache-dir --trusted-host pypi.python.org --trusted-host files.pythonhosted.org --trusted-host pypi.org  --upgrade -r requirements.txt
 
 COPY . .
 
-CMD ["python", "llama.py"]
+CMD ["python", "gigachat_file.py"]

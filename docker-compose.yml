@@ -1,7 +1,7 @@
 services:
-  llama:
+  gigachat:
     build: .
-    container_name: llama_gpu
+    container_name: gigachat
     deploy:
       resources:
         limits:

@@ -10,3 +10,7 @@ optimum
 gptqmodel
 sqlalchemy
 psycopg2-binary
+gigachat
+pydantic
+langchain
+langchain_deepseek
